@@ -9,13 +9,14 @@ export default function BootExperience() {
     const [stage, setStage] = useState("power");
 
     //Boot menu stage
-    const osOptions = useMemo(() => ["Windows 7", "Windows 7 (Recovered)"], []);
+    const osOptions = useMemo(() => ["Professional", "Personal/Fun"], []);
 
-    const tools = useMemo(() => ["Windows Memory Diagnostic"], []);
+    const tools = useMemo(() => ["Surprise #1", "Surprise #2", "Surprise #3"], []);
 
     //Boot menu state
     const [selectedOsIndex, setSelectedOsIndex] = useState(0);
     const [toolsFocused, setToolsFocused] = useState(false);
+    const [selectedToolIndex, setSelectedToolIndex] = useState(0);
 
     //Store timeout IDs
     const stageTimeoutRef = useRef(null);
@@ -48,7 +49,7 @@ export default function BootExperience() {
         function handleChoose(){
             //not currently set up for the two options for personal page
             if(toolsFocused){
-                alert(`Tool selected: ${tools[0]}`);
+                alert(`Tool selected: ${tools[selectedToolIndex]}`);
                 return;
             }
             
@@ -59,6 +60,7 @@ export default function BootExperience() {
             //reset everything and replay from beginning
             setToolsFocused(false);
             setSelectedOsIndex(0);
+            setSelectedToolIndex(0);
             setStage("power");
         }
 
@@ -68,14 +70,24 @@ export default function BootExperience() {
             //prevent page scroll on arrows/tab
             if(key === "ArrowUp"){
                 e.preventDefault();
-                if(toolsFocused) return;  //tools only has one line; ignore up and down
-                setSelectedOsIndex((i) => (i - 1 + osOptions.length) % osOptions.length);
+
+                if(toolsFocused){
+                    setSelectedToolIndex((i) => (i - 1 + tools.length) % tools.length);
+                }
+                else{
+                    setSelectedOsIndex((i) => (i - 1 + osOptions.length) % osOptions.length);
+                }
             }
 
             if(key === "ArrowDown"){
                 e.preventDefault();
-                if(toolsFocused) return;
-                setSelectedOsIndex((i) => (i + 1) % osOptions.length);
+
+                if(toolsFocused){
+                    setSelectedToolIndex((i) => (i + 1) % tools.length);
+                }
+                else{
+                    setSelectedOsIndex((i) => (i + 1) % osOptions.length);
+                } 
             }
 
             if(key === "Tab"){
@@ -88,8 +100,7 @@ export default function BootExperience() {
                 handleChoose();
             }
 
-            // Optional: quick restart for dev
-            if (key.toLowerCase() === "r") {
+            if (key === "F8") {
                 e.preventDefault();
                 restartSequence();
             }
@@ -97,7 +108,7 @@ export default function BootExperience() {
 
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
-    }, [stage, toolsFocused, selectedOsIndex, osOptions, tools]);
+    }, [stage, toolsFocused, selectedOsIndex, selectedToolIndex, osOptions, tools]);
 
     //-------Render current stage-----------
     if(stage === "power") return <Power />
@@ -115,13 +126,14 @@ export default function BootExperience() {
 
     return(
         <BootMenu 
-            title="Windows Boot Manager"
-            instruction="Choose an operating system to start, or press TAB to select a tool:"
+            title="Andrea's Boot Manager"
+            instruction="Choose an page to start, or press TAB to select a surprise:"
             osOptions={osOptions}
             tools={tools}
             selectedOsIndex={selectedOsIndex}
+            selectedToolIndex={selectedToolIndex}
             toolsFocused={toolsFocused}
-            footer="To specify an advanced option for this choice, press F8."
+            note="To rewatch that animation, press F8."
         />
     );
 }
