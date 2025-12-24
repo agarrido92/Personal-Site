@@ -47,7 +47,7 @@
 .splash-progress-fill {
   height: 100%;
   width: 0%;
-  background: #fff;
+  background: #e6e6e6;
 }
 
 .splash-progress-fill.run {
@@ -103,7 +103,11 @@
 
 .boot-title {
   font-size: 18px;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
+  padding: 3px 5px;
+  background: #e6e6e6;
+  color: #000;
+  text-align: center;
 }
 
 .boot-instruction {
@@ -122,7 +126,7 @@
 }
 
 .boot-item.selected {
-  background: #fff;
+  background: #e6e6e6;
   color: #000;
 }
 
