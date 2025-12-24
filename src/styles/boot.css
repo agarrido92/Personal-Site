@@ -1,0 +1,153 @@
+/*==========Base==========*/
+.boot-screen {
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/*==========Power==========*/
+.boot-power {
+  background: #000;
+}
+
+/*==========Splash==========*/
+.boot-splash {
+  display: grid;
+  place-items: center;
+}
+
+.splash-center {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+
+.splash-logo {
+  width: 300px;          
+  height: auto;
+  opacity: 0.95;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.splash-subtitle {
+  font-size: 14px;
+}
+
+.splash-progress {
+  width: min(280px, 60vw);
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.splash-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+}
+
+.splash-progress-fill.run {
+  animation-name: splashFill;
+  animation-duration: var(--bar-duration, 5000ms);
+  animation-timing-function: cubic-bezier(0.6, 0.0, 0.05, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes splashFill {
+  0%   { width: 0%; }
+  10%  { width: 12%; }
+  18%  { width: 18%; }
+  26%  { width: 18%; }
+  40%  { width: 45%; }
+  52%  { width: 55%; }
+  62%  { width: 55%; }
+  72%  { width: 95%; }
+  82%  { width: 95%; }
+  90%  { width: 95%; }
+  96%  { width: 95%; }
+  100% { width: 100%; }
+}
+
+.splash-fade {
+  transition: opacity 900ms ease;
+}
+
+.splash-fade.in {
+  opacity: 1;
+}
+
+.splash-fade.out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-subtitle,
+.splash-progress {
+  margin-top: 10px;
+}
+
+/*==========Boot Menu==========*/
+.boot-menu {
+  display: grid;
+  place-items: center;
+}
+
+.boot-wrap {
+  width: min(760px, 92vw);
+  line-height: 1.35;
+}
+
+.boot-title {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.boot-instruction {
+  font-size: 14px;
+  margin-bottom: 10px;
+  opacity: 0.92;
+}
+
+.boot-list {
+  margin: 10px 0 14px 0;
+}
+
+.boot-item {
+  padding: 6px 10px;
+  margin: 2px 0;
+}
+
+.boot-item.selected {
+  background: #fff;
+  color: #000;
+}
+
+.boot-item-text {
+  display: inline-block;
+}
+
+.boot-tools {
+  margin-top: 6px;
+}
+
+.boot-tools-label {
+  margin-bottom: 4px;
+  opacity: 0.9;
+}
+
+.boot-footer {
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Small help text at the bottom (your hint line) */
+.boot-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.55;
+}
