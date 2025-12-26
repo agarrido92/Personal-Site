@@ -19,12 +19,12 @@ export default function BootMenu({title, instruction, osOptions, tools, selected
                 <div className="boot-note">{note}</div>
                 <div className="boot-tools">
                     <div className="boot-tools-label">Surprises:</div>
-                    {tools.map((label, idx) => {
+                    {tools.map((tool, idx) => {
                         const selected = toolsFocused && idx === selectedToolIndex;
 
                         return (
-                            <div key={`${label}-${idx}`} className={`boot-item ${selected ? "selected" : ""}`}>
-                                <span className="boot-item-text">{label}</span>
+                            <div key={`${tool.id}-${idx}`} className={`boot-item ${selected ? "selected" : ""}`}>
+                                <span className="boot-item-text">{tool.label}</span>
                             </div>
                         )
                     })}

@@ -4,14 +4,18 @@ import Splash from './boot_screens/Splash.jsx';
 import BootMenu from './boot_screens/BootMenu.jsx';
 import './styles/boot.css';
 
-export default function BootExperience() {
+export default function BootExperience({ onChoose, onToolChoose }) {
     
     const [stage, setStage] = useState("power");
 
     //Boot menu stage
-    const osOptions = useMemo(() => ["Professional", "Personal/Fun"], []);
+    const osOptions = useMemo(() => ["Professional", "Personal"], []);
 
-    const tools = useMemo(() => ["Surprise #1", "Surprise #2", "Surprise #3"], []);
+    const tools = useMemo(() => [
+        {id: "surprise1", label: "Favorite Video"},
+        {id: "surprise2", label: "Favorite Place"},
+        {id: "surprise3", label: "Favorite Activity"}
+    ], []);
 
     //Boot menu state
     const [selectedOsIndex, setSelectedOsIndex] = useState(0);
@@ -47,13 +51,14 @@ export default function BootExperience() {
         if(stage !== "menu") return;
 
         function handleChoose(){
-            //not currently set up for the two options for personal page
             if(toolsFocused){
-                alert(`Tool selected: ${tools[selectedToolIndex]}`);
+                const toolId = tools[selectedToolIndex].id;
+                onToolChoose?.(toolId);
                 return;
             }
             
-            alert(`OS selected: ${osOptions[selectedOsIndex]}`);
+            const mode = selectedOsIndex === 0 ? "professional" : "personal";
+            onChoose?.(mode);
         }
 
         function restartSequence(){
@@ -108,7 +113,7 @@ export default function BootExperience() {
 
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
-    }, [stage, toolsFocused, selectedOsIndex, selectedToolIndex, osOptions, tools]);
+    }, [stage, toolsFocused, selectedOsIndex, selectedToolIndex, osOptions, tools, onToolChoose, onChoose]);
 
     //-------Render current stage-----------
     if(stage === "power") return <Power />
