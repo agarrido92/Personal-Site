@@ -132,7 +132,7 @@ export default function BootExperience({ onChoose, onToolChoose }) {
     return(
         <BootMenu 
             title="Andrea's Boot Manager"
-            instruction="Choose an page to start, or press TAB to select a surprise:"
+            instruction="Choose a page to start, or press TAB to select a surprise:"
             osOptions={osOptions}
             tools={tools}
             selectedOsIndex={selectedOsIndex}
