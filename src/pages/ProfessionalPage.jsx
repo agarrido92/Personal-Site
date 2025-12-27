@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/professional.css";
 import logo from "../assets/logo-light.png";
+import {Target, Lightbulb, Handshake, Zap, Linkedin, Github, Mail} from "lucide-react";
 
 export default function ProfessionalPage() {
   return(
@@ -19,7 +20,7 @@ export default function ProfessionalPage() {
             </div>
 
             <nav className="pro-nav" aria-label="Primary">
-              <a className="pro-nav-link" href="#home">Home</a>
+              <a className="pro-nav-link pro-nav-link--no-caret" href="#home">Home</a>
 
               <div className="pro-dropdown" tabIndex={0}>
                 <span className="pro-nav-link pro-nav-link-button" aria-haspopup="true">
@@ -80,28 +81,36 @@ export default function ProfessionalPage() {
               </p>
               <div className="pro-points">
                 <div className="pro-point">
-                  <div className="pro-point-icon" aria-hidden="true">🎯</div>
+                  <div className="pro-point-icon" aria-hidden="true">
+                    <Target size={18} strokeWidth={1.75} />
+                  </div>
                   <div className="pro-point-text">
                     10+ years solving real business challenges in a fast-paced industry.
                   </div>
                 </div>
 
                 <div className="pro-point">
-                  <div className="pro-point-icon" aria-hidden="true">💡</div>
+                  <div className="pro-point-icon" aria-hidden="true">
+                    <Lightbulb size={18} strokeWidth={1.75} />
+                  </div>
                   <div className="pro-point-text">
                     Trusted to streamline complex issues into clear, effective solutions.
                   </div>
                 </div>
 
                 <div className="pro-point">
-                  <div className="pro-point-icon" aria-hidden="true">🤝</div>
+                  <div className="pro-point-icon" aria-hidden="true">
+                    <Handshake size={18} strokeWidth={1.75} />
+                  </div>
                   <div className="pro-point-text">
                     Proven ability to unite and lead teams to achieve high-impact goals.
                   </div>
                 </div>
 
                 <div className="pro-point">
-                  <div className="pro-point-icon" aria-hidden="true">⚙️</div>
+                  <div className="pro-point-icon" aria-hidden="true">
+                    <Zap size={18} strokeWidth={1.75} />
+                  </div>
                   <div className="pro-point-text">
                     Swiftly adapts and thrives in fast-paced and evolving environments.
                   </div>
@@ -113,13 +122,16 @@ export default function ProfessionalPage() {
           <section className="pro-connect" id="contact" aria-label="Contact">
             <h2 className="pro-connect-title">Let’s connect</h2>
             <div className="pro-connect-links">
-              <a className="pro-connect-link" href="www.linkedin.com/in/andrea-garrido-menacho-2434165b" target="_blank" rel="noreferrer">
+              <a className="pro-connect-link" href="https://www.linkedin.com/in/andrea-garrido-menacho-2434165b" target="_blank" rel="noreferrer">
+                <Linkedin size={16} />
                 LinkedIn
               </a>
-              <a className="pro-connect-link" href="https://github.com/agarrido92" target="_blank" rel="noreferrer">
+              <a className="pro-connect-link" href="https://www.github.com/agarrido92" target="_blank" rel="noreferrer">
+                <Github size={16} />
                 GitHub
               </a>
               <a className="pro-connect-link" href="mailto:agarrido92@gmail.com">
+                <Mail size={16} />
                 Email
               </a>
             </div>

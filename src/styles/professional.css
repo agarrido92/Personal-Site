@@ -106,6 +106,7 @@
   height: 50px;
   width: auto;
   display: block;
+  padding-left: 20px;
 }
 
 /*==========Navigation==========*/
@@ -132,6 +133,35 @@
 .pro-nav-link:hover {
   background: rgba(122, 174, 230, 0.18);
   color: var(--text);
+}
+
+.pro-nav-link.pro-nav-link--no-caret {
+  position: relative;
+  padding-right: 28px;
+  isolation: isolate;
+}
+
+.pro-nav-link.pro-nav-link--no-caret:hover {
+  background: transparent;
+}
+
+.pro-nav-link.pro-nav-link--no-caret::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 18px;
+  border-radius: 10px;
+  background: rgba(122, 174, 230, 0.18);
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.pro-nav-link.pro-nav-link--no-caret:hover::before {
+  opacity: 1;
 }
 
 .pro-nav-link-button {
@@ -272,6 +302,7 @@
 
 .pro-btn-primary:hover {
   box-shadow: 0 12px 22px rgba(31, 42, 68, 0.22);
+  color: #ffffff;
 }
 
 .pro-btn-ghost {
@@ -284,6 +315,7 @@
 .pro-btn-ghost:hover {
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 10px 18px rgba(31, 42, 68, 0.14);
+  color: rgba(31, 42, 68, 0.78);
 }
 
 /* ==========Section below hero========== */
@@ -336,6 +368,10 @@
   font-size: 18px;
 }
 
+.pro-point-icon svg {
+  color: rgba(31, 42, 68, 0.70);
+}
+
 .pro-point-text {
   font-size: 15px;
   line-height: 1.6;
@@ -362,7 +398,7 @@
 
 .pro-connect-links {
   display: flex;
-  gap: 18px;
+  gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -374,6 +410,9 @@
   border-bottom: 1px solid transparent;
   padding-bottom: 2px;
   font-size: 15px;
+  align-items: center;
+  gap: 5px;
+  display: inline-flex;
 }
 
 .pro-connect-link:hover {
