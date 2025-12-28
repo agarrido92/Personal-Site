@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import BootExperience from "./BootExperience.jsx";
-import ProfessionalPage from "./pages/ProfessionalPage.jsx";
+import ProfessionalLayout from "./pages/professional/ProfessionalLayout";
+import ProfessionalHome from "./pages/professional/ProfessionalHome";
 import PersonalPage from "./pages/PersonalPage.jsx";
 
 export default function App() {
@@ -32,7 +33,9 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<BootExperience onChoose={handleChoose} onToolChoose={handleToolChoose}/>} />
-      <Route path="/professional" element={<ProfessionalPage />} />
+      <Route path="/professional" element={<ProfessionalLayout />} >
+        <Route index element={<ProfessionalHome />} />
+      </Route>
       <Route path="/personal" element={<PersonalPage />} />
     </Routes>
   );
