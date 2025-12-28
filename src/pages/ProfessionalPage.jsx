@@ -20,7 +20,7 @@ export default function ProfessionalPage() {
             </div>
 
             <nav className="pro-nav" aria-label="Primary">
-              <a className="pro-nav-link pro-nav-link--no-caret" href="#home">Home</a>
+              <a className="pro-nav-link pro-nav-link--no-caret" href="/professional">Home</a>
 
               <div className="pro-dropdown" tabIndex={0}>
                 <span className="pro-nav-link pro-nav-link-button" aria-haspopup="true">
@@ -48,6 +48,7 @@ export default function ProfessionalPage() {
                   </a>
                 </div>
               </div>
+              <a className="pro-nav-link pro-nav-link--no-caret" href="#contact">Contact</a>
             </nav>
 
           </div>
