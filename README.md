@@ -135,6 +135,18 @@ Planned Work:
 - Ensure accessibility and contrast remain strong
 
 ---
+## Current Visual Appearance
+
+Boot Splash
+![Boot Splash Render](visual_renderings/boot_splash.png)
+
+Boot Menu
+![Boot Menu Render](visual_renderings/boot_menu.png)
+
+Professional Page (Light Mode)
+![Professional Page Home](visual_renderings/professional_page.png)
+
+---
 
 ## Notes
 
