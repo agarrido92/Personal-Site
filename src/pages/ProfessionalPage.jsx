@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/professional.css";
-import logo from "../assets/logo-light.png";
-import {Target, Lightbulb, Handshake, Zap, Linkedin, Github, Mail} from "lucide-react";
+import logoLight from "../assets/logo-light.png";
+import logoDark from "../assets/logo-dark.png";
+import {Target, Lightbulb, Handshake, Zap, Linkedin, Github, Mail, Sun, Moon} from "lucide-react";
+
+function getInitialTheme() {
+  if (typeof window === "undefined") return "light";
+
+  const saved = localStorage.getItem("pro-theme");
+  if (saved === "light" || saved === "dark") return saved;
+
+  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
+  return prefersDark ? "dark" : "light";
+}
 
 export default function ProfessionalPage() {
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    localStorage.setItem("pro-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
+  const logo = theme === "dark" ? logoDark : logoLight;
+
+
   return(
-    <div className="pro-page" data-theme="light">
+    <div className="pro-page" data-theme={theme}>
       <div className="pro-surface">
         <header className="pro-header">
           <div className="pro-header-inner">
             <div className="pro-brand">
-              <a href="/professional" className="pro-brand-link">
-                <img
-                  src={logo}
-                  alt="Andrea Garrido logo"
-                  className="pro-brand-logo"
-                />
-              </a>
+              <Link to="/professional" className="pro-brand-link">
+                <img src={logo} alt="Andrea Garrido logo" className="pro-brand-logo" />
+              </Link>
             </div>
 
             <nav className="pro-nav" aria-label="Primary">
-              <a className="pro-nav-link pro-nav-link--no-caret" href="/professional">Home</a>
+              <Link className="pro-nav-link pro-nav-link--no-caret" to="/professional">Home</Link>
 
               <div className="pro-dropdown" tabIndex={0}>
                 <span className="pro-nav-link pro-nav-link-button" aria-haspopup="true">
@@ -49,8 +68,11 @@ export default function ProfessionalPage() {
                 </div>
               </div>
               <a className="pro-nav-link pro-nav-link--no-caret" href="#contact">Contact</a>
+              <button type="button" className="pro-theme-toggle" onClick={toggleTheme} aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Light Mode" : "Dark Mode"}>
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
             </nav>
-
+            
           </div>
         </header>
 

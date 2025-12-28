@@ -1,16 +1,28 @@
 .pro-page {
+/*-----Light Mode-----*/ 
   --bg: #f4f8ff;
-  --panel: #ffffff;
-  --panel-2: #f7fbff;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-solid: #ffffff;
+  --panel-2: rgba(250, 252, 255, 0.95);
   --text: #1f2a44;
-  --muted: #5f6b85;
+  --text-strong: rgba(31, 42, 68, 0.90);
+  --text-soft: rgba(31, 42, 68, 0.78);
+  --muted: rgba(95, 107, 133, 0.92);
   --border: rgba(31, 42, 68, 0.10);
+  --border-soft: rgba(31, 42, 68, 0.08);
   --shadow: 0 10px 30px rgba(31, 42, 68, 0.10);
   --shadow-soft: 0 6px 18px rgba(31, 42, 68, 0.08);
   --accent: #2b6cb0;
   --accent-2: #7aaee6;
+  --accent-strong: #1d4ed8;
+  --pill: rgba(122, 174, 230, 0.18);
+  --pill-2: rgba(43, 108, 176, 0.10);
   --link: #2b6cb0;
   --focus: rgba(43, 108, 176, 0.25);
+  --header-bg: rgba(244, 248, 255, 0.75);
+
+  --surface-edge-glow: rgba(31, 42, 68, 0.14);
+  --surface-edge-opacity: 0.55;
 
   width: 100%;
   min-height: 100vh;
@@ -22,6 +34,40 @@
     "Segoe UI Emoji";
 }
 
+.pro-page[data-theme="dark"] {
+/*-----Dark Mode-----*/
+  --bg: #020216;
+  --panel: rgba(11, 17, 47, 0.78);        
+  --panel-solid: rgba(11, 17, 47, 0.92);
+  --panel-2: rgba(18, 26, 62, 0.86);     
+
+  --text: rgba(220, 228, 255, 0.92);
+  --text-strong: rgba(235, 241, 255, 0.94);
+  --text-soft: rgba(155, 168, 214, 0.88); 
+  --muted: rgba(155, 168, 214, 0.72);
+
+  --border: rgba(155, 168, 214, 0.18);
+  --border-soft: rgba(155, 168, 214, 0.12);
+  --shadow: 0 16px 60px rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.45);
+
+  --accent: #6b8cff;          
+  --accent-strong: #9bb0ff; 
+  --pill: rgba(68, 92, 158, 0.22); 
+  --pill-2: rgba(68, 92, 158, 0.16);
+
+  --focus: rgba(107, 140, 255, 0.50);
+
+  --header-bg: rgba(2, 2, 22, 0.72);
+  --surface-edge-glow: rgba(155, 168, 214, 0.18);
+  --surface-edge-opacity: 0.32;
+
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(68, 92, 158, 0.22), transparent 58%),
+    radial-gradient(1000px 600px at 90% 10%, rgba(40, 56, 116, 0.18), transparent 62%),
+    var(--bg);
+}
+
 .pro-surface {
   max-width: 1100px;
   margin: 0 auto;
@@ -29,7 +75,7 @@
   display: flex;
   flex-direction: column;
 
-  background: rgba(255, 255, 255, 0.86);
+  background: var(--panel);
   backdrop-filter: blur(10px);
 
   border-left: 1px solid var(--border);
@@ -58,17 +104,17 @@
 
 .pro-surface::before {
   left: -24px;
-  background: linear-gradient(90deg, rgba(31, 42, 68, 0.14), transparent 70%);
+  background: linear-gradient(90deg, var(--surface-edge-glow), transparent 70%);
   filter: blur(8px);
-  opacity: 0.55;
+  opacity: var(--surface-edge-opacity);
   border-bottom-left-radius: 18px;
 }
 
 .pro-surface::after {
   right: -24px;
-  background: linear-gradient(270deg, rgba(31, 42, 68, 0.14), transparent 70%);
+  background: linear-gradient(270deg, var(--surface-edge-glow), transparent 70%);
   filter: blur(8px);
-  opacity: 0.55;
+  opacity: var(--surface-edge-opacity);
   border-bottom-right-radius: 18px;
 }
 
@@ -78,7 +124,7 @@
   top: 0;
   z-index: 10;
   backdrop-filter: blur(10px);
-  background: rgba(244, 248, 255, 0.75);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border);
 }
 
@@ -131,7 +177,7 @@
 }
 
 .pro-nav-link:hover {
-  background: rgba(122, 174, 230, 0.18);
+  background: var(--pill);
   color: var(--text);
 }
 
@@ -153,7 +199,7 @@
   left: 0;
   right: 18px;
   border-radius: 10px;
-  background: rgba(122, 174, 230, 0.18);
+  background: var(--pill);
   opacity: 0;
   transition: opacity 160ms ease;
   pointer-events: none;
@@ -206,7 +252,7 @@
   border-radius: 14px;
 
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--panel-solid);
   box-shadow: var(--shadow);
 
   display: none;
@@ -227,13 +273,62 @@
   font-size: 14px;
   padding: 10px 0;
   border-radius: 10px;
-  transition: background 160ms ease;
+  transition: background 160ms ease, color 160ms ease;
   width: 100%;
 }
 
 .pro-dropdown-item:hover {
-  background: rgba(43, 108, 176, 0.10);
-  color: #1d4ed8;
+  background: var(--pill-2);
+  color: var(--accent-strong);
+}
+
+.pro-theme-toggle {
+  display: grid; 
+  place-items: center;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 120ms ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.pro-theme-toggle svg {
+  stroke: var(--muted);
+}
+
+.pro-theme-toggle:hover svg {
+  stroke: var(--text);
+}
+
+.pro-theme-toggle:hover {
+  background: var(--pill);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.pro-theme-toggle:active {
+  transform: translateY(1px);
+  border-color: var(--border);
+}
+
+.pro-theme-toggle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.pro-theme-toggle:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ==========Main layout========== */
@@ -245,7 +340,7 @@
 /* ==========Hero========== */
 .pro-hero {
   padding: 64px 40px 36px;
-  border-bottom: 1px solid rgba(31, 42, 68, 0.08);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .pro-hero-inner {
@@ -257,7 +352,7 @@
   font-size: 40px;
   line-height: 1.02;
   letter-spacing: -0.9px;
-  color: rgba(31, 42, 68, 0.90);
+  color: var(--text-strong);
   font-weight: 700;
 }
 
@@ -265,7 +360,7 @@
   margin: 0 0 22px;
   font-size: 18px;
   line-height: 1.7;
-  color: rgba(95, 107, 133, 0.92);
+  color: var(--muted);
   max-width: 720px;
 }
 
@@ -300,22 +395,31 @@
   box-shadow: 0 10px 18px rgba(31, 42, 68, 0.18);
 }
 
+.pro-page[data-theme="dark"] .pro-btn-primary {
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.92), rgba(96, 165, 250, 0.78));
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
 .pro-btn-primary:hover {
-  box-shadow: 0 12px 22px rgba(31, 42, 68, 0.22);
   color: #ffffff;
 }
 
 .pro-btn-ghost {
   background: rgba(255, 255, 255, 0.70);
-  color: rgba(31, 42, 68, 0.78);
+  color: var(--text-soft);
   border-color: rgba(31, 42, 68, 0.10);
   box-shadow: 0 8px 16px rgba(31, 42, 68, 0.10);
 }
 
+.pro-page[data-theme="dark"] .pro-btn-ghost {
+  background: rgba(8, 14, 25, 0.70);
+  border-color: var(--border);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
 .pro-btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 10px 18px rgba(31, 42, 68, 0.14);
-  color: rgba(31, 42, 68, 0.78);
+  color: var(--text-soft);
 }
 
 /* ==========Section below hero========== */
@@ -331,7 +435,7 @@
   margin: 0 0 10px;
   font-size: 28px;
   letter-spacing: -0.4px;
-  color: rgba(31, 42, 68, 0.86);
+  color: var(--text-strong);
   font-weight: 700;
 }
 
@@ -339,7 +443,7 @@
   margin: 0 0 22px;
   font-size: 16px;
   line-height: 1.75;
-  color: rgba(95, 107, 133, 0.92);
+  color: var(--muted);
   max-width: 860px;
 }
 
@@ -363,19 +467,19 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: rgba(122, 174, 230, 0.18);
-  border: 1px solid rgba(31, 42, 68, 0.08);
+  background: var(--pill);
+  border: 1px solid var(--border-soft);
   font-size: 18px;
 }
 
 .pro-point-icon svg {
-  color: rgba(31, 42, 68, 0.70);
+  color: var(--text-soft);
 }
 
 .pro-point-text {
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(31, 42, 68, 0.78);
+  color: var(--text-soft);
 }
 
 /* ==========Footer / connect========== */
@@ -383,7 +487,7 @@
   padding: 10px 40px 10px;
   text-align: center;
   margin-top: 18px;
-  background: rgba(250, 252, 255, 0.95);
+  background: var(--panel-2);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--border);
 }
@@ -392,7 +496,7 @@
   margin: 0 0 14px;
   font-size: 22px;
   letter-spacing: -0.3px;
-  color: rgba(31, 42, 68, 0.82);
+  color: var(--text-strong);
   font-weight: 700;
 }
 
@@ -404,7 +508,7 @@
 }
 
 .pro-connect-link {
-  color: rgba(95, 107, 133, 0.92);
+  color: var(--muted);
   text-decoration: none;
   font-weight: 600;
   border-bottom: 1px solid transparent;
@@ -416,7 +520,7 @@
 }
 
 .pro-connect-link:hover {
-  color: rgba(31, 42, 68, 0.88);
+  color: var(--text);
   border-bottom-color: rgba(31, 42, 68, 0.22);
 }
 
